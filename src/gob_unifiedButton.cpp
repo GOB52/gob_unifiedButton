@@ -47,7 +47,7 @@ void UnifiedButton::createButtons(const appearance_t app)
     _btnB.initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
     _btnC.initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
 
-    M5_LOGI("[gob] change appearance_t:%02xH", app);
+    //M5_LOGI("[gob] change appearance_t:%02xH", app);
 }
 
 void UnifiedButton::update()
