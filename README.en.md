@@ -32,8 +32,8 @@ gob::UnifiedButton unfiedButton;
 
 void setup()
 {
-	M5.begin();
-    unfiedButton.begin(&M5.Display);	
+    M5.begin();
+    unfiedButton.begin(&M5.Display);
 }
 
 void loop()
@@ -41,17 +41,17 @@ void loop()
     unfiedButton.update(); // Must be call before M5.update
     M5.update();
 
-	// M5.BtnX can be used to obtain status
+    // M5.BtnX can be used to obtain status
     if(M5.BtnA.wasHold())
     {
-	    // ...
+        // ...
     }
     else if(M5.BtnA.wasClicked())
     {
-	    // ...
+        // ...
     }
 
-	// Drawing Buttons
+    // Drawing Buttons
     unfiedButton.draw(dirty);
 }
 ```
@@ -77,15 +77,15 @@ getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 
 void setup()
 {
-	M5.begin();
+    M5.begin();
     unfiedButton.begin(&M5.Display, gob::UnifiedButton::appearance_t::custom);
 
-	auto btnA = unfiedButton.getButtonA();
-	auto btnB = unfiedButton.getButtonB();
-	auto btnC = unfiedButton.getButtonC();
+    auto btnA = unfiedButton.getButtonA();
+    auto btnB = unfiedButton.getButtonB();
+    auto btnC = unfiedButton.getButtonC();
 
     // Re-create buttons with unique shape, color, and text
     btnA->initButton(unfiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
-	...
+    ...
 }
 ```

@@ -32,8 +32,8 @@ gob::UnifiedButton unfiedButton;
 
 void setup()
 {
-	M5.begin();
-    unfiedButton.begin(&M5.Display);	
+    M5.begin();
+    unfiedButton.begin(&M5.Display);
 }
 
 void loop()
@@ -41,17 +41,17 @@ void loop()
     unfiedButton.update(); // M5.update() の前に呼ぶ事
     M5.update();
 
-	// M5.BtnX 経由で同様に状態取得
+    // M5.BtnX 経由で同様に状態取得
     if(M5.BtnA.wasHold())
     {
-	    // ...
+        // ...
     }
     else if(M5.BtnA.wasClicked())
     {
-	    // ...
+        // ...
     }
 
-	// ボタンを描画する
+    // ボタンを描画する
     unfiedButton.draw(dirty);
 }
 ```
@@ -77,15 +77,15 @@ getButoonA / getButtonB / getButtonC で LGFX_Button\* を取得できます。
 
 void setup()
 {
-	M5.begin();
+    M5.begin();
     unfiedButton.begin(&M5.Display, gob::UnifiedButton::appearance_t::custom);
 
-	auto btnA = unfiedButton.getButtonA();
-	auto btnB = unfiedButton.getButtonB();
-	auto btnC = unfiedButton.getButtonC();
+    auto btnA = unfiedButton.getButtonA();
+    auto btnB = unfiedButton.getButtonB();
+    auto btnC = unfiedButton.getButtonC();
 
     // 独自形状、色、テキストのボタンを再作成
     btnA->initButton(unfiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
-	...
+    ...
 }
 ```
