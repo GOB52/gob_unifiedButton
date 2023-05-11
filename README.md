@@ -66,7 +66,7 @@ begin で指定、または changeAppearance で変更できます。
 |top|画面上側にボタンを表示|
 |custom|独自にボタンをカスタマイズ(下記参照)|
 |transparent\_bottom|bottom と同様の位置に透明ボタンを配置|
-|transparent\_top|bottom と同様の位置に透明ボタンを配置|
+|transparent\_top|top と同様の位置に透明ボタンを配置|
 |transparent_all|画面全体に透明ボタンを配置(縦3分割)|
 
 ## ボタンのカスタマイズ
