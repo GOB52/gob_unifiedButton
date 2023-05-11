@@ -52,7 +52,7 @@ void loop()
     }
 
     // Drawing Buttons
-    unfiedButton.draw(dirty);
+    unfiedButton.draw();
 }
 ```
 

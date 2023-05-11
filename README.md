@@ -52,7 +52,7 @@ void loop()
     }
 
     // ボタンを描画する
-    unfiedButton.draw(dirty);
+    unfiedButton.draw();
 }
 ```
 
