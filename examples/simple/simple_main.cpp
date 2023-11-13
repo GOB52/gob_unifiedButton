@@ -33,10 +33,10 @@ void loop()
     {
         M5_LOGI("B button pressed for 1000 ms");
     }
-    
-    if(M5.BtnC.wasDoubleClicked())
+
+    if(M5.BtnC.wasReleased())
     {
-        M5_LOGI("C button was double clicked");
+        M5_LOGI("C button was released");
     }
 
     unifiedButton.draw();
