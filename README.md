@@ -28,7 +28,7 @@ lib_deps = https://github.com/GOB52/gob_unifiedButton
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
 
-gob::UnifiedButton unfiedButton;
+goblib::UnifiedButton unfiedButton;
 
 void setup()
 {
@@ -60,7 +60,7 @@ void loop()
 
 begin で指定、または changeAppearance で変更できます。
 
-|引数 gob::UnifiedButton::appearance\_t|外観|
+|引数 goblib::UnifiedButton::appearance\_t|外観|
 |---|---|
 |bottom| 画面下側にボタンを表示 (default)|
 |top|画面上側にボタンを表示|
@@ -71,14 +71,14 @@ begin で指定、または changeAppearance で変更できます。
 
 ## ボタンのカスタマイズ
 
-gob::UnifiedButton::appearance\_t::custom を指定した後であれば、
+goblib::UnifiedButton::appearance\_t::custom を指定した後であれば、
 getButoonA / getButtonB / getButtonC で LGFX_Button\* を取得できます。  
 ```cpp
 
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display, gob::UnifiedButton::appearance_t::custom);
+    unfiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
 
     auto btnA = unfiedButton.getButtonA();
     auto btnB = unfiedButton.getButtonB();

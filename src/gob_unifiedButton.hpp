@@ -1,6 +1,6 @@
 /*!
   @file gob_unifiedButton.hpp
-  @brief Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
 
   @mainpage gob_unifiedButton
   Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
@@ -16,12 +16,16 @@
 #include <utility/Button_Class.hpp>
 #include <M5GFX.h>
 
-namespace gob 
+/*!
+  @namespace goblib
+  @brief Top level namespace of mine
+ */
+namespace goblib
 {
 
 /*!
   @class UnifiedButton
-  @brief Drawing and processing of touch buttons and setting their state to M5.BtnX
+  @brief Drawing buttons. Processing of  buttons and setting their state to M5.BtnX.
  */
 class UnifiedButton
 {

@@ -1,12 +1,12 @@
 /*!
   @file gob_unifiedButton.cpp
-  @brief Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
   @author GOB @GOB_52_GOB https://twitter.com/GOB_52_GOB
 */
 #include <M5Unified.h>
 #include "gob_unifiedButton.hpp"
 
-namespace gob
+namespace goblib
 {
 // class UnifiedButton
 void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)

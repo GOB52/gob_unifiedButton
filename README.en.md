@@ -28,7 +28,7 @@ lib_deps = https://github.com/GOB52/gob_unifiedButton
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
 
-gob::UnifiedButton unfiedButton;
+goblib::UnifiedButton unfiedButton;
 
 void setup()
 {
@@ -59,7 +59,7 @@ void loop()
 ## Appearance changes
 You can specify it with begin or change it with changeAppearance.
 
-|Argument gob::UnifiedButton::appearance\_t|Description|
+|Argument goblib::UnifiedButton::appearance\_t|Description|
 |---|---|
 |bottom| Display buttons at the bottom of the screen (default)|
 |top|Display buttons at the top of the screen|
@@ -70,7 +70,7 @@ You can specify it with begin or change it with changeAppearance.
 
 
 ## Customize Buttons
-If after specifying gob::UnifiedButton::appearance\_t::custom,
+If after specifying goblib::UnifiedButton::appearance\_t::custom,
 getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 
 ```cpp
@@ -78,7 +78,7 @@ getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display, gob::UnifiedButton::appearance_t::custom);
+    unfiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
 
     auto btnA = unfiedButton.getButtonA();
     auto btnB = unfiedButton.getButtonB();
