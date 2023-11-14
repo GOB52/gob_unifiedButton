@@ -15,12 +15,13 @@ It is also useful for those who are making a common source for Basic, Gray, and 
 
 ## How to install
 Install in an appropriate way depending on your environment.
-* git clone and extract into place  
-or
+* git clone or download zip, and extract into place
 * platformio.ini
 ```ini
 lib_deps = https://github.com/GOB52/gob_unifiedButton
 ```
+* Use library manager on ArduinoIDE
+
 
 ## How to use
 
@@ -28,7 +29,7 @@ lib_deps = https://github.com/GOB52/gob_unifiedButton
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
 
-gob::UnifiedButton unfiedButton;
+goblib::UnifiedButton unfiedButton;
 
 void setup()
 {
@@ -38,8 +39,8 @@ void setup()
 
 void loop()
 {
-    unfiedButton.update(); // Must be call before M5.update
     M5.update();
+    unfiedButton.update(); // Must be call after M5.update. (Changed to call after M5.update() since 0.1.0)
 
     // M5.BtnX can be used to obtain status
     if(M5.BtnA.wasHold())
@@ -59,7 +60,7 @@ void loop()
 ## Appearance changes
 You can specify it with begin or change it with changeAppearance.
 
-|Argument gob::UnifiedButton::appearance\_t|Description|
+|Argument goblib::UnifiedButton::appearance\_t|Description|
 |---|---|
 |bottom| Display buttons at the bottom of the screen (default)|
 |top|Display buttons at the top of the screen|
@@ -70,7 +71,7 @@ You can specify it with begin or change it with changeAppearance.
 
 
 ## Customize Buttons
-If after specifying gob::UnifiedButton::appearance\_t::custom,
+If after specifying goblib::UnifiedButton::appearance\_t::custom,
 getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 
 ```cpp
@@ -78,7 +79,7 @@ getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display, gob::UnifiedButton::appearance_t::custom);
+    unfiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
 
     auto btnA = unfiedButton.getButtonA();
     auto btnB = unfiedButton.getButtonB();
@@ -89,3 +90,7 @@ void setup()
     ...
 }
 ```
+
+## Document
+Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).
+

@@ -1,9 +1,9 @@
 /*!
   @file gob_unifiedButton.hpp
-  @brief Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
 
   @mainpage gob_unifiedButton
-  Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
 
   @author GOB / GitHub:<a href="https://github.com/GOB52/">GOB52</a> / Twitter:<a href="https://twitter.com/gob_52_gob">@GOB_52_GOB</a>
 
@@ -16,12 +16,16 @@
 #include <utility/Button_Class.hpp>
 #include <M5GFX.h>
 
-namespace gob 
+/*!
+  @namespace goblib
+  @brief Top level namespace of mine
+ */
+namespace goblib
 {
 
 /*!
   @class UnifiedButton
-  @brief Drawing and processing of touch buttons and setting their state to M5.BtnX
+  @brief Drawing buttons. Processing of  buttons and setting their state to M5.BtnX.
  */
 class UnifiedButton
 {
@@ -44,7 +48,7 @@ class UnifiedButton
 
     //! @brief Gets the target gfx
     LovyanGFX* gfx() { return _gfx; }
-    
+
     /*!
       @brief Initialize
       @param gfx Target for drawing
@@ -54,14 +58,23 @@ class UnifiedButton
 
     /// @name Drawing control
     ///@{
-    inline void showButton(const bool b) { _dirty |= _show = b; } //!< @brief Show or hide buttons
-    inline void showButton() { showButton(true);  } //!< @brief Show buttons
-    inline void hideButton() { showButton(false); } //!< @brief Hide buttons
+    inline void show(const bool b) { _dirty |= _show = b; } //!< @brief Show or hide buttons
+    inline void show() { show(true);  } //!< @brief Show buttons
+    inline void hide() { show(false); } //!< @brief Hide buttons
     ///@}
+
+    /// @cond 0
+    [[deprecated("please use show(const bool)")]]
+    inline void showButtons(const bool b) { show(b); }
+    [[deprecated("please use show()")]]
+    inline void showButtons() { show(true);  }
+    [[deprecated("please use hide()")]]
+    inline void hideButtons() { show(false); }
+    /// @endcond
     
     /*!
       @brief Update status
-      @warning Call it before M5.update()
+      @warning Call it after M5.update()
      */
     void update();
 
@@ -71,7 +84,10 @@ class UnifiedButton
      */
     void draw(const bool force = false);
 
-    //! @brief Change appearance
+    /*!
+      @brief Change appearance
+      @param app Button appearance
+    */
     void changeAppearance(const appearance_t app)
     {
         if(app != _appearance)
@@ -85,18 +101,15 @@ class UnifiedButton
     ///@name For customize buttons
     ///@warning Must be appearance is custom.
     ///@{
-    LGFX_Button* getButtonA() { return _appearance == appearance_t::custom ? &_btnA : nullptr; } //!< @brief Gets the LGFX_Button A
-    LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btnB : nullptr; } //!< @brief Gets the LGFX_Button B
-    LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btnC : nullptr; } //!< @brief Gets the LGFX_Button C
+    LGFX_Button* getButtonA() { return _appearance == appearance_t::custom ? &_btns[0] : nullptr; } //!< @brief Gets the LGFX_Button A
+    LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btns[1] : nullptr; } //!< @brief Gets the LGFX_Button B
+    LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btns[2] : nullptr; } //!< @brief Gets the LGFX_Button C
     ///@}
     
   private:
     void createButtons(const appearance_t app);
 
-    LGFX_Button _btnA{};
-    LGFX_Button _btnB{};
-    LGFX_Button _btnC{};
-
+    LGFX_Button _btns[3]; // 0:A, 1:B, 2:C
     LovyanGFX* _gfx{};
     uint_fast8_t _press_bits{};
     bool _dirty{}, _show{true};;

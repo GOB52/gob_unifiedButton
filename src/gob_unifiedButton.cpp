@@ -1,12 +1,12 @@
 /*!
   @file gob_unifiedButton.cpp
-  @brief Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
   @author GOB @GOB_52_GOB https://twitter.com/GOB_52_GOB
 */
 #include <M5Unified.h>
 #include "gob_unifiedButton.hpp"
 
-namespace gob
+namespace goblib
 {
 // class UnifiedButton
 void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
@@ -43,9 +43,9 @@ void UnifiedButton::createButtons(const appearance_t app)
 
     constexpr int32_t olClr = lgfx::color565(64,64,64);
     
-    _btnA.initButton(_gfx, left + w * 0 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnA");
-    _btnB.initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
-    _btnC.initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
+    _btns[0].initButton(_gfx, left + w * 0 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnA");
+    _btns[1].initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
+    _btns[2].initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
 
     //M5_LOGI("[gob] change appearance_t:%02xH", app);
 }
@@ -56,13 +56,10 @@ void UnifiedButton::update()
 
     // Processes buttons in the same way as they are processed in Core2
     auto ms = m5gfx::millis();
-    M5.Touch.update(ms);
-
     uint_fast8_t btn_bits{};
     uint_fast8_t prev = _press_bits;
     _press_bits = btn_bits = 0;
     int i = M5.Touch.getCount();
-
     while (--i >= 0)
     {
         auto raw = M5.Touch.getTouchPointRaw(i);
@@ -74,9 +71,11 @@ void UnifiedButton::update()
             if (M5.BtnC.isPressed()) { btn_bits |= 1 << 2; }
             if (btn_bits || !(det.state & m5::touch_state_t::mask_moving))
             {
-                _press_bits = btn_bits |= _btnA.contains(raw.x, raw.y) << 0;
-                _press_bits = btn_bits |= _btnB.contains(raw.x, raw.y) << 1;
-                _press_bits = btn_bits |= _btnC.contains(raw.x, raw.y) << 2;
+                for(int i=0; i<3; ++i)
+                {
+                    btn_bits |= (_btns[i].contains(raw.x, raw.y) << i);
+                }
+                _press_bits = btn_bits;
             }
         }
     }
@@ -86,7 +85,7 @@ void UnifiedButton::update()
     M5.BtnB.setRawState(ms, btn_bits & 2);
     M5.BtnC.setRawState(ms, btn_bits & 4);
 
-    _dirty |= prev != _press_bits;
+    _dirty |= (prev != _press_bits);
 }
 
 void UnifiedButton::draw(const bool force)
@@ -96,9 +95,10 @@ void UnifiedButton::draw(const bool force)
     if(!(_appearance & appearance_t::transparent_bottom) && _show && (_dirty || force))
     {
         _dirty = false;
-        _btnA.drawButton(_press_bits & 1);
-        _btnB.drawButton(_press_bits & 2);
-        _btnC.drawButton(_press_bits & 4);
+        for(int i=0; i<3; ++i)
+        {
+            _btns[i].drawButton(_press_bits & (1<<i));
+        }
     }
 }
 //
