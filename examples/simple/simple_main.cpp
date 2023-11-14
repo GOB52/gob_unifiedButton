@@ -31,7 +31,7 @@ void loop()
     else if(M5.BtnA.wasClicked())
     {
         showButton = !showButton;
-        M5_LOGI("A button was clicked. button %s", showButton ? "show" : "hide");
+        M5_LOGI("A button was clicked. button %s", showButton ? "show" : "hide(clear screen)");
         if(!showButton) { M5.Display.clear(TFT_DARKGREEN); }
         unifiedButton.show(showButton);
     }
@@ -44,6 +44,23 @@ void loop()
     if(M5.BtnC.wasReleased())
     {
         M5_LOGI("C button was released");
+    }
+
+    // Can use with behavior as a touch screen if exists.
+    if(M5.Touch.isEnabled())
+    {
+        auto dt = M5.Touch.getDetail();
+        if(dt.y < M5.Display.height() - 32+8)
+        {
+            if(dt.isHolding())
+            {
+                M5.Lcd.fillCircle(dt.x, dt.y, 8, TFT_ORANGE);
+            }
+            else if(dt.isPressed())
+            {
+                M5.Lcd.fillCircle(dt.x, dt.y, 8, TFT_WHITE);
+            }
+        }
     }
 
     unifiedButton.draw();
