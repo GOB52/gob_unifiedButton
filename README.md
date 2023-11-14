@@ -38,8 +38,8 @@ void setup()
 
 void loop()
 {
-    unfiedButton.update(); // M5.update() の前に呼ぶ事
     M5.update();
+    unfiedButton.update(); // M5.update() の後に呼ぶ事 (0.1.0 から後呼びに変更されました)
 
     // M5.BtnX 経由で同様に状態取得
     if(M5.BtnA.wasHold())

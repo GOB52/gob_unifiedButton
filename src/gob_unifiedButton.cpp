@@ -56,13 +56,10 @@ void UnifiedButton::update()
 
     // Processes buttons in the same way as they are processed in Core2
     auto ms = m5gfx::millis();
-    M5.Touch.update(ms);
-
     uint_fast8_t btn_bits{};
     uint_fast8_t prev = _press_bits;
     _press_bits = btn_bits = 0;
     int i = M5.Touch.getCount();
-
     while (--i >= 0)
     {
         auto raw = M5.Touch.getTouchPointRaw(i);
@@ -74,9 +71,10 @@ void UnifiedButton::update()
             if (M5.BtnC.isPressed()) { btn_bits |= 1 << 2; }
             if (btn_bits || !(det.state & m5::touch_state_t::mask_moving))
             {
-                _press_bits = btn_bits |= _btnA.contains(raw.x, raw.y) << 0;
-                _press_bits = btn_bits |= _btnB.contains(raw.x, raw.y) << 1;
-                _press_bits = btn_bits |= _btnC.contains(raw.x, raw.y) << 2;
+                btn_bits |= _btnA.contains(raw.x, raw.y) << 0;
+                btn_bits |= _btnB.contains(raw.x, raw.y) << 1;
+                btn_bits |= _btnC.contains(raw.x, raw.y) << 2;
+                _press_bits = btn_bits;
             }
         }
     }
@@ -86,7 +84,7 @@ void UnifiedButton::update()
     M5.BtnB.setRawState(ms, btn_bits & 2);
     M5.BtnC.setRawState(ms, btn_bits & 4);
 
-    _dirty |= prev != _press_bits;
+    _dirty |= (prev != _press_bits);
 }
 
 void UnifiedButton::draw(const bool force)

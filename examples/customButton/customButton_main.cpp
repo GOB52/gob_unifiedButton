@@ -37,8 +37,8 @@ void setup()
 
 void loop()
 {
-    unifiedButton.update();
     M5.update();
+    unifiedButton.update();
 
     // Core/Core2/CoreS3 Can work with common code.
     if(M5.BtnA.wasHold())

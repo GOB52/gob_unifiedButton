@@ -38,8 +38,8 @@ void setup()
 
 void loop()
 {
-    unfiedButton.update(); // Must be call before M5.update
     M5.update();
+    unfiedButton.update(); // Must be call after M5.update. (Changed to call after M5.update() since 0.1.0)
 
     // M5.BtnX can be used to obtain status
     if(M5.BtnA.wasHold())

@@ -1,39 +1,40 @@
 /*
   gob_unifiedButton example
-  simple for Core/Core2/CoreS3
+  tranparency for Core/Core2/CoreS3
  */
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
-#include <gob_unifiedButton_version.hpp>
 
 goblib::UnifiedButton unifiedButton; // gob_unifiedButton instance
 
 void setup()
 {
     M5.begin();
-    unifiedButton.begin(&M5.Display);
+    /*
+      3 transparent buttons.
+      Split screen vertically into 3 sections.
+      +---+---+---+
+      |   |   |   | 
+      | A | B | C |
+      |   |   |   |
+      +---+---+---+
+    */
+    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::transparent_all);
     M5.Display.clear(TFT_DARKGREEN);
-    M5_LOGI("gob_unifiedButton %s / %x", GOBLIB_UNIFIED_BUTTON_VERSION_STRING, GOBLIB_UNIFIED_BUTTON_VERSION_VALUE);
 }
 
 void loop()
 {
-    static bool showButton{true};
-
     M5.update();
     unifiedButton.update();
 
-    // Core/Core2/CoreS3 Can work with common code.
     if(M5.BtnA.wasHold())
     {
         M5_LOGI("A button was hold");
     }
     else if(M5.BtnA.wasClicked())
     {
-        showButton = !showButton;
-        M5_LOGI("A button was clicked. button %s", showButton ? "show" : "hide");
-        if(!showButton) { M5.Display.clear(TFT_DARKGREEN); }
-        unifiedButton.show(showButton);
+        M5_LOGI("A button was clicked");
     }
 
     if(M5.BtnB.pressedFor(1000))
@@ -46,5 +47,5 @@ void loop()
         M5_LOGI("C button was released");
     }
 
-    unifiedButton.draw();
+    unifiedButton.draw(); // For transparent buttons, nothing is drawn when invoked.
 }
