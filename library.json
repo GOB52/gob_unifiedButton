@@ -21,5 +21,8 @@
   "frameworks": "arduino",
   "dependencies": {
     "m5stack/M5Unified": "^0.1.10"
+  },
+  "export": {
+    "include" : [ ".gitignore", "README.en.md", "platformio.ini", "src", "examples", "doc/Doxyfile", "doc/doxy.sh" ]
   }
 }
