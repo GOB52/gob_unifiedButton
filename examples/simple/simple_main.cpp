@@ -4,6 +4,7 @@
  */
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
+#include <gob_unifiedButton_version.hpp>
 
 goblib::UnifiedButton unifiedButton; // gob_unifiedButton instance
 
@@ -12,6 +13,7 @@ void setup()
     M5.begin();
     unifiedButton.begin(&M5.Display);
     M5.Display.clear(TFT_DARKGREEN);
+    M5_LOGI("gob_unifiedButton %s / %x", GOBLIB_UNIFIED_BUTTON_VERSION_STRING, GOBLIB_UNIFIED_BUTTON_VERSION_VALUE);
 }
 
 void loop()
