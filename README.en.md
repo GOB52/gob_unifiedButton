@@ -15,12 +15,13 @@ It is also useful for those who are making a common source for Basic, Gray, and 
 
 ## How to install
 Install in an appropriate way depending on your environment.
-* git clone and extract into place  
-or
+* git clone or download zip, and extract into place
 * platformio.ini
 ```ini
 lib_deps = https://github.com/GOB52/gob_unifiedButton
 ```
+* Use library manager on ArduinoIDE
+
 
 ## How to use
 
@@ -89,3 +90,7 @@ void setup()
     ...
 }
 ```
+
+## Document
+Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).
+

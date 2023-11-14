@@ -15,12 +15,12 @@ CoreS3 以外では処理をしないので、Basic, Gray, Core2 と共通のソ
 
 ## 導入
 環境によって適切な方法でインストールしてください
-* git clone して所定の位置へ展開する  
-または
+* git clone や Zip ダウンロードからの展開
 * platformio.ini
 ```ini
 lib_deps = https://github.com/GOB52/gob_unifiedButton
 ```
+* ArduinoIDE ライブラリマネージャからのインストール
 
 ## 使い方
 
@@ -89,3 +89,6 @@ void setup()
     ...
 }
 ```
+
+## ドキュメント
+[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。
