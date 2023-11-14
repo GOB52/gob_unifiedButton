@@ -1,6 +1,6 @@
 {
   "name": "gob_unifiedButton",
-  "description": "Touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)",
+  "description": "Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)",
   "keywords": "M5Stack-CoreS3, M5Stack, M5Unified, M5GFX",
   "authors": {
     "name": "GOB",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/GOB52/gob_unifiedButton.git"
   },
-  "version": "0.0.3",
+  "version": "0.1.0",
   "build": {
     "libArchive": false
   },
@@ -20,6 +20,6 @@
   "platforms": "espressif32",
   "frameworks": "arduino",
   "dependencies": {
-    "m5stack/M5Unified": "^0.1.6"
+    "m5stack/M5Unified": "^0.1.10"
   }
 }
