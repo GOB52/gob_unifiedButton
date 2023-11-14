@@ -43,9 +43,9 @@ void UnifiedButton::createButtons(const appearance_t app)
 
     constexpr int32_t olClr = lgfx::color565(64,64,64);
     
-    _btnA.initButton(_gfx, left + w * 0 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnA");
-    _btnB.initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
-    _btnC.initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
+    _btns[0].initButton(_gfx, left + w * 0 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnA");
+    _btns[1].initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
+    _btns[2].initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
 
     //M5_LOGI("[gob] change appearance_t:%02xH", app);
 }
@@ -71,9 +71,10 @@ void UnifiedButton::update()
             if (M5.BtnC.isPressed()) { btn_bits |= 1 << 2; }
             if (btn_bits || !(det.state & m5::touch_state_t::mask_moving))
             {
-                btn_bits |= _btnA.contains(raw.x, raw.y) << 0;
-                btn_bits |= _btnB.contains(raw.x, raw.y) << 1;
-                btn_bits |= _btnC.contains(raw.x, raw.y) << 2;
+                for(int i=0; i<3; ++i)
+                {
+                    btn_bits |= (_btns[i].contains(raw.x, raw.y) << i);
+                }
                 _press_bits = btn_bits;
             }
         }
@@ -94,9 +95,10 @@ void UnifiedButton::draw(const bool force)
     if(!(_appearance & appearance_t::transparent_bottom) && _show && (_dirty || force))
     {
         _dirty = false;
-        _btnA.drawButton(_press_bits & 1);
-        _btnB.drawButton(_press_bits & 2);
-        _btnC.drawButton(_press_bits & 4);
+        for(int i=0; i<3; ++i)
+        {
+            _btns[i].drawButton(_press_bits & (1<<i));
+        }
     }
 }
 //

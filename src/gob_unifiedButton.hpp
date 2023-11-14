@@ -48,7 +48,7 @@ class UnifiedButton
 
     //! @brief Gets the target gfx
     LovyanGFX* gfx() { return _gfx; }
-    
+
     /*!
       @brief Initialize
       @param gfx Target for drawing
@@ -64,7 +64,7 @@ class UnifiedButton
     ///@}
 
     /// @cond 0
-    [[deprecated("please use show()")]]
+    [[deprecated("please use show(const bool)")]]
     inline void showButtons(const bool b) { show(b); }
     [[deprecated("please use show()")]]
     inline void showButtons() { show(true);  }
@@ -101,18 +101,15 @@ class UnifiedButton
     ///@name For customize buttons
     ///@warning Must be appearance is custom.
     ///@{
-    LGFX_Button* getButtonA() { return _appearance == appearance_t::custom ? &_btnA : nullptr; } //!< @brief Gets the LGFX_Button A
-    LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btnB : nullptr; } //!< @brief Gets the LGFX_Button B
-    LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btnC : nullptr; } //!< @brief Gets the LGFX_Button C
+    LGFX_Button* getButtonA() { return _appearance == appearance_t::custom ? &_btns[0] : nullptr; } //!< @brief Gets the LGFX_Button A
+    LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btns[1] : nullptr; } //!< @brief Gets the LGFX_Button B
+    LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btns[2] : nullptr; } //!< @brief Gets the LGFX_Button C
     ///@}
     
   private:
     void createButtons(const appearance_t app);
 
-    LGFX_Button _btnA{};
-    LGFX_Button _btnB{};
-    LGFX_Button _btnC{};
-
+    LGFX_Button _btns[3]; // 0:A, 1:B, 2:C
     LovyanGFX* _gfx{};
     uint_fast8_t _press_bits{};
     bool _dirty{}, _show{true};;
