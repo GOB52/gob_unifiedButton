@@ -28,18 +28,18 @@ lib_deps = https://github.com/GOB52/gob_unifiedButton
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
 
-goblib::UnifiedButton unfiedButton;
+goblib::UnifiedButton unifiedButton;
 
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display);
+    unifiedButton.begin(&M5.Display);
 }
 
 void loop()
 {
     M5.update();
-    unfiedButton.update(); // M5.update() の後に呼ぶ事 (0.1.0 から後呼びに変更されました)
+    unifiedButton.update(); // M5.update() の後に呼ぶ事 (0.1.0 から後呼びに変更されました)
 
     // M5.BtnX 経由で同様に状態取得
     if(M5.BtnA.wasHold())
@@ -52,7 +52,7 @@ void loop()
     }
 
     // ボタンを描画する
-    unfiedButton.draw();
+    unifiedButton.draw();
 }
 ```
 
@@ -78,14 +78,14 @@ getButoonA / getButtonB / getButtonC で LGFX_Button\* を取得できます。
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
+    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
 
-    auto btnA = unfiedButton.getButtonA();
-    auto btnB = unfiedButton.getButtonB();
-    auto btnC = unfiedButton.getButtonC();
+    auto btnA = unifiedButton.getButtonA();
+    auto btnB = unifiedButton.getButtonB();
+    auto btnC = unifiedButton.getButtonC();
 
     // 独自形状、色、テキストのボタンを再作成
-    btnA->initButton(unfiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
+    btnA->initButton(unifiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
     ...
 }
 ```

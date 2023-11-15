@@ -29,18 +29,18 @@ lib_deps = https://github.com/GOB52/gob_unifiedButton
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
 
-goblib::UnifiedButton unfiedButton;
+goblib::UnifiedButton unifiedButton;
 
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display);
+    unifiedButton.begin(&M5.Display);
 }
 
 void loop()
 {
     M5.update();
-    unfiedButton.update(); // Must be call after M5.update. (Changed to call after M5.update() since 0.1.0)
+    unifiedButton.update(); // Must be call after M5.update. (Changed to call after M5.update() since 0.1.0)
 
     // M5.BtnX can be used to obtain status
     if(M5.BtnA.wasHold())
@@ -53,7 +53,7 @@ void loop()
     }
 
     // Drawing Buttons
-    unfiedButton.draw();
+    unifiedButton.draw();
 }
 ```
 
@@ -79,14 +79,14 @@ getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
 void setup()
 {
     M5.begin();
-    unfiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
+    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
 
-    auto btnA = unfiedButton.getButtonA();
-    auto btnB = unfiedButton.getButtonB();
-    auto btnC = unfiedButton.getButtonC();
+    auto btnA = unifiedButton.getButtonA();
+    auto btnB = unifiedButton.getButtonB();
+    auto btnC = unifiedButton.getButtonC();
 
     // Re-create buttons with unique shape, color, and text
-    btnA->initButton(unfiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
+    btnA->initButton(unifiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
     ...
 }
 ```
