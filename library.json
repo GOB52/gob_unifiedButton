@@ -11,18 +11,12 @@
     "type": "git",
     "url": "https://github.com/GOB52/gob_unifiedButton.git"
   },
-  "version": "0.1.0",
-  "build": {
-    "libArchive": false
-  },
+  "version": "0.1.1",
   "headers": "gob_unifiedButton.hpp",
   "license": "MIT",
   "platforms": "espressif32",
   "frameworks": "arduino",
   "dependencies": {
     "m5stack/M5Unified": "^0.1.10"
-  },
-  "export": {
-    "include" : [ ".gitignore", "README.en.md", "platformio.ini", "src", "examples", "doc/Doxyfile", "doc/doxy.sh" ]
   }
 }
