@@ -20,7 +20,7 @@ CoreS3 以外では処理をしないので、Basic, Gray, Core2 と共通のソ
 * git clone や Zip ダウンロードからの展開
 * platformio.ini
 ```ini
-lib_deps = lib_deps = gob/gob_unifiedButton
+lib_deps = gob/gob_unifiedButton
 ```
 * ArduinoIDE ライブラリマネージャからのインストール
 
