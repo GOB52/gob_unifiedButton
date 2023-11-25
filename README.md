@@ -1,29 +1,30 @@
 # gob_unifiedButton
 
-[English](README.en.md)
+[日本語](https://github.com/GOB52/gob_unifiedButton/blob/master/README.ja.md)
 
-## 概要
-物理ボタン、タッチボタンを持たない CoreS3 上にタッチボタンを追加し、 M5.BtnX 経由で状態を取得できるようにしたライブラリです。  
-将来的に [M5Unified](https://github.com/m5stack/M5Unified) に同様の機能がつくまでの暫定としてお使いください。  
-CoreS3 以外では処理をしないので、Basic, Gray, Core2 と共通のソースで作っている方にも有用です。
+![gob_unifiedButton](https://github.com/GOB52/gob_unifiedButton/assets/26270227/590cde0d-f4b6-4fe6-8cae-e25d27b32f8b)
 
-## 必要なもの
+## Overview
+This library adds touch buttons on CoreS3, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
+Please use this as an interim feature until a similar feature is added to [M5Unified](https://github.com/m5stack/M5Unified) in the future.  
+It is also useful for those who are making a common source for Basic, Gray, and Core2, as it does not process anything other than CoreS3.
+
+## Required libraries
 * [M5Unified](https://github.com/m5stack/M5Unified)
 * [M5GFX](https://github.com/m5stack/M5GFX)
 
-**M5Unified 前提ですので、 M5Core3.h を使用した物には適用できません。**
+**M5Unified is assumed, so it cannot be applied to those using M5Core3.h.**
 
-## 導入
-環境によって適切な方法でインストールしてください
-* git clone や Zip ダウンロードからの展開
+## How to install
+Install in an appropriate way depending on your environment.
+* git clone or download zip, and extract into place
 * platformio.ini
 ```ini
-lib_deps = https://github.com/GOB52/gob_unifiedButton
+lib_deps = gob/gob_unifiedButton
 ```
-* ArduinoIDE ライブラリマネージャからのインストール
+* Use library manager on ArduinoIDE
 
-## 使い方
-
+## How to use
 ```cpp
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
@@ -39,9 +40,9 @@ void setup()
 void loop()
 {
     M5.update();
-    unifiedButton.update(); // M5.update() の後に呼ぶ事 (0.1.0 から後呼びに変更されました)
+    unifiedButton.update(); // Must be call after M5.update. (Changed to call after M5.update() since 0.1.0)
 
-    // M5.BtnX 経由で同様に状態取得
+    // M5.BtnX can be used to obtain status
     if(M5.BtnA.wasHold())
     {
         // ...
@@ -51,30 +52,33 @@ void loop()
         // ...
     }
 
-    // ボタンを描画する
+    // Drawing Buttons
     unifiedButton.draw();
 }
 ```
-
-## 外観変更
-
-begin で指定、または changeAppearance で変更できます。
-
-|引数 goblib::UnifiedButton::appearance\_t|外観|
-|---|---|
-|bottom| 画面下側にボタンを表示 (default)|
-|top|画面上側にボタンを表示|
-|custom|独自にボタンをカスタマイズ(下記参照)|
-|transparent\_bottom|bottom と同様の位置に透明ボタンを配置|
-|transparent\_top|top と同様の位置に透明ボタンを配置|
-|transparent_all|画面全体に透明ボタンを配置(縦3分割)|
-
-## ボタンのカスタマイズ
-
-goblib::UnifiedButton::appearance\_t::custom を指定した後であれば、
-getButoonA / getButtonB / getButtonC で LGFX_Button\* を取得できます。  
+## Button text font changes
+You can configure which fonts can be used with M5GFX.
 ```cpp
+    unifiedButton.setFont(&fonts::Font4);
+```
 
+## Appearance changes
+You can specify it with begin or change it with changeAppearance.
+
+|Argument goblib::UnifiedButton::appearance\_t|Description|
+|---|---|
+|bottom| Display buttons at the bottom of the screen (default)|
+|top|Display buttons at the top of the screen|
+|custom|Customize your own buttons|
+|transparent\_bottom|Transparent buttons on the bottom of the screen|
+|transparent\_top|Transparent buttons on the top of the screen|
+|transparent_all|Transparent buttons are placed on the entire screen (three vertical sections)|
+
+## Customize Buttons
+If after specifying goblib::UnifiedButton::appearance\_t::custom,
+getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
+
+```cpp
 void setup()
 {
     M5.begin();
@@ -84,11 +88,12 @@ void setup()
     auto btnB = unifiedButton.getButtonB();
     auto btnC = unifiedButton.getButtonC();
 
-    // 独自形状、色、テキストのボタンを再作成
+    // Re-create buttons with unique shape, color, and text
     btnA->initButton(unifiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
     ...
 }
 ```
 
-## ドキュメント
-[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。
+## Document
+Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).
+
