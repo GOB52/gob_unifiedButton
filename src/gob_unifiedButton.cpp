@@ -16,6 +16,7 @@ void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
     _gfx = gfx;
     _appearance = app;
     _dirty = true;
+    _font = gfx->getFont();
     createButtons(_appearance);
 }
 
@@ -94,11 +95,15 @@ void UnifiedButton::draw(const bool force)
 
     if(!(_appearance & appearance_t::transparent_bottom) && _show && (_dirty || force))
     {
+        auto gfont = _gfx->getFont();
+        _gfx->setFont(_font);
+
         _dirty = false;
         for(int i=0; i<3; ++i)
         {
             _btns[i].drawButton(_press_bits & (1<<i));
         }
+        _gfx->setFont(gfont);
     }
 }
 //
