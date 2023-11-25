@@ -14,6 +14,9 @@ void setup()
     unifiedButton.begin(&M5.Display);
     M5.Display.clear(TFT_DARKGREEN);
     M5_LOGI("gob_unifiedButton %s / %x", GOBLIB_UNIFIED_BUTTON_VERSION_STRING, GOBLIB_UNIFIED_BUTTON_VERSION_VALUE);
+
+    // You can change text font of button.
+    unifiedButton.setFont(&fonts::Font4);
 }
 
 void loop()
@@ -62,6 +65,6 @@ void loop()
             }
         }
     }
-
+    
     unifiedButton.draw();
 }

@@ -46,9 +46,6 @@ class UnifiedButton
 
     UnifiedButton() {}
 
-    //! @brief Gets the target gfx
-    LovyanGFX* gfx() { return _gfx; }
-
     /*!
       @brief Initialize
       @param gfx Target for drawing
@@ -56,22 +53,6 @@ class UnifiedButton
     */
     void begin(LovyanGFX* gfx, const appearance_t app = appearance_t::bottom);
 
-    /// @name Drawing control
-    ///@{
-    inline void show(const bool b) { _dirty |= _show = b; } //!< @brief Show or hide buttons
-    inline void show() { show(true);  } //!< @brief Show buttons
-    inline void hide() { show(false); } //!< @brief Hide buttons
-    ///@}
-
-    /// @cond 0
-    [[deprecated("please use show(const bool)")]]
-    inline void showButtons(const bool b) { show(b); }
-    [[deprecated("please use show()")]]
-    inline void showButtons() { show(true);  }
-    [[deprecated("please use hide()")]]
-    inline void hideButtons() { show(false); }
-    /// @endcond
-    
     /*!
       @brief Update status
       @warning Call it after M5.update()
@@ -83,6 +64,22 @@ class UnifiedButton
       @param force Force drawing if true
      */
     void draw(const bool force = false);
+
+    //! @brief Gets the target gfx
+    LovyanGFX* gfx() { return _gfx; }
+
+    /// @name Drawing control
+    ///@{
+    inline void show(const bool b) { _dirty |= _show = b; } //!< @brief Show or hide buttons
+    inline void show() { show(true);  } //!< @brief Show buttons
+    inline void hide() { show(false); } //!< @brief Hide buttons
+    ///@}
+
+    ///@name Font
+    ///@{
+    const lgfx::IFont* getFont() const { return _font; } //!< @brief Getss the font of the button text
+    void setFont(const lgfx::IFont* f) { assert(f && "nullptr"); _font = f; } //!< @brief Set font of the button text
+    ///@}
 
     /*!
       @brief Change appearance
@@ -105,6 +102,15 @@ class UnifiedButton
     LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btns[1] : nullptr; } //!< @brief Gets the LGFX_Button B
     LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btns[2] : nullptr; } //!< @brief Gets the LGFX_Button C
     ///@}
+
+    /// @cond 0
+    [[deprecated("please use show(const bool)")]]
+    inline void showButtons(const bool b) { show(b); }
+    [[deprecated("please use show()")]]
+    inline void showButtons() { show(true);  }
+    [[deprecated("please use hide()")]]
+    inline void hideButtons() { show(false); }
+    /// @endcond
     
   private:
     void createButtons(const appearance_t app);
@@ -115,6 +121,7 @@ class UnifiedButton
     bool _dirty{}, _show{true};;
     appearance_t _appearance{appearance_t::bottom};
     m5::board_t _board{m5::board_t::board_unknown};
+    const lgfx::IFont* _font{};
 };
 //
 }
