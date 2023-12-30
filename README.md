@@ -95,5 +95,10 @@ void setup()
 ```
 
 ## Document
-Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).
-
+Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).  
+Output is to doc/html
+```
+bash doc/doxy.sh
+```
+or
+See also [GitHub Pages](https://gob52.github.io/gob_unifiedButton/annotated.html)
