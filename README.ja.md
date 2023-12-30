@@ -95,4 +95,11 @@ void setup()
 ```
 
 ## ドキュメント
-[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。
+[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。  
+出力先は doc/html です。
+```
+bash doc/doxy.sh
+```
+
+または[GitHub Pages]を参照してください。(https://gob52.github.io/gob_unifiedButton/annotated.html)
+
