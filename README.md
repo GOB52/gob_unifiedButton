@@ -101,4 +101,4 @@ Output is to doc/html
 bash doc/doxy.sh
 ```
 or
-See also [GitHub Pages](https://gob52.github.io/gob_unifiedButton/annotated.html)
+See also [GitHub Pages](https://gob52.github.io/gob_unifiedButton/)

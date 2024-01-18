@@ -101,5 +101,5 @@ void setup()
 bash doc/doxy.sh
 ```
 
-または[GitHub Pages]を参照してください。(https://gob52.github.io/gob_unifiedButton/annotated.html)
+または[GitHub Pages](https://gob52.github.io/gob_unifiedButton/)を参照してください。
 
