@@ -69,28 +69,25 @@ You can specify it with begin or change it with changeAppearance.
 |---|---|
 |bottom| Display buttons at the bottom of the screen (default)|
 |top|Display buttons at the top of the screen|
-|custom|Customize your own buttons|
 |transparent\_bottom|Transparent buttons on the bottom of the screen|
 |transparent\_top|Transparent buttons on the top of the screen|
 |transparent_all|Transparent buttons are placed on the entire screen (three vertical sections)|
 
 ## Customize Buttons
-If after specifying goblib::UnifiedButton::appearance\_t::custom,
-getButtonA / getButtonB / getButtonC to get LGFX_Button\*.
+You can get LGFX_Button\*.
 
 ```cpp
 void setup()
 {
     M5.begin();
-    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
+    unifiedButton.begin(&M5.Display);
 
     auto btnA = unifiedButton.getButtonA();
-    auto btnB = unifiedButton.getButtonB();
-    auto btnC = unifiedButton.getButtonC();
 
     // Re-create buttons with unique shape, color, and text
     btnA->initButton(unifiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
-    ...
+    // Change label text
+    btnA->setLabelText("Own");
 }
 ```
 
