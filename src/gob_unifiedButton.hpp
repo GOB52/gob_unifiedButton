@@ -38,7 +38,6 @@ class UnifiedButton
     {
         bottom,             //!< Display buttons at the bottom of the screen (default)
         top,                //!< Display buttons at the top of the screen
-        custom,             //!< Customize your own buttons
         transparent_bottom = 0x40, //!< Transparent buttons on the bottom of the screen
         transparent_top,    //!< Transparent buttons on the top of the screen
         transparent_all,    //!< Transparent buttons are placed on the entire screen (three vertical sections)
@@ -95,15 +94,14 @@ class UnifiedButton
         }
     }
 
-    ///@name For customize buttons
-    ///@warning Must be appearance is custom.
+    ///@name Gets the LGFX_Button
     ///@{
-    LGFX_Button* getButtonA() { return _appearance == appearance_t::custom ? &_btns[0] : nullptr; } //!< @brief Gets the LGFX_Button A
-    LGFX_Button* getButtonB() { return _appearance == appearance_t::custom ? &_btns[1] : nullptr; } //!< @brief Gets the LGFX_Button B
-    LGFX_Button* getButtonC() { return _appearance == appearance_t::custom ? &_btns[2] : nullptr; } //!< @brief Gets the LGFX_Button C
+    LGFX_Button* getButtonA() { return  &_btns[0]; } //!< @brief Gets the button A
+    LGFX_Button* getButtonB() { return  &_btns[1]; } //!< @brief Gets the button B
+    LGFX_Button* getButtonC() { return  &_btns[2]; } //!< @brief Gets the button C
     ///@}
 
-    /// @cond 0
+    /// @cond
     [[deprecated("please use show(const bool)")]]
     inline void showButtons(const bool b) { show(b); }
     [[deprecated("please use show()")]]

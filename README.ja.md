@@ -70,29 +70,27 @@ begin で指定、または changeAppearance で変更できます。
 |---|---|
 |bottom| 画面下側にボタンを表示 (default)|
 |top|画面上側にボタンを表示|
-|custom|独自にボタンをカスタマイズ(下記参照)|
 |transparent\_bottom|bottom と同様の位置に透明ボタンを配置|
 |transparent\_top|top と同様の位置に透明ボタンを配置|
 |transparent_all|画面全体に透明ボタンを配置(縦3分割)|
 
 ## ボタンのカスタマイズ
-goblib::UnifiedButton::appearance\_t::custom を指定した後であれば、
-getButoonA / getButtonB / getButtonC で LGFX_Button\* を取得できます。  
+LGFX_Button\* を取得できます。  
 ```cpp
 void setup()
 {
     M5.begin();
-    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
+    unifiedButton.begin(&M5.Display);
 
     auto btnA = unifiedButton.getButtonA();
-    auto btnB = unifiedButton.getButtonB();
-    auto btnC = unifiedButton.getButtonC();
-
     // 独自形状、色、テキストのボタンを再作成
     btnA->initButton(unifiedButton.gfx(), 40, 120, 80, 240 ,TFT_GREEN, TFT_BLUE, TFT_WHITE, "[A]");
-    ...
+    // ラベル変更
+	btnA->setLabelText("Own");
 }
 ```
+LGFX_Button については[こちら](https://github.com/m5stack/M5GFX/blob/master/src/lgfx/v1/LGFX_Button.hpp)を参照してください。
+
 
 ## ドキュメント
 [Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。  
