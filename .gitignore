@@ -31,9 +31,21 @@
 *.out
 *.app
 
-# PlatformIO
-.pio
-.vscode/.browse.c_cpp.db*
-.vscode/c_cpp_properties.json
-.vscode/launch.json
-.vscode/ipch
+# Executables
+*.exe
+*.out
+*.app
+
+#pio
+/.pio/
+
+#VsCode
+/.vscode/
+
+# Doxygen
+/html
+
+# 
+debug.cfg
+debug_custom.json
+*.svd
