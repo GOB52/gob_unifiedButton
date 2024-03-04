@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">gob_unifiedButton
-   &#160;<span id="projectnumber">0.1.1 git rev:25fdf3700806fb59fa484a365eec2796b049a7c2</span>
+   &#160;<span id="projectnumber">0.1.2 git rev:cab9f4e170b9f2ca4b16167e58bb975481963f55</span>
    </div>
   </td>
  </tr>
@@ -85,11 +85,10 @@ Public Types</h2></td></tr>
 <tr class="memitem:ab4ec49965db1ac0fb014721338fe3caa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caa">appearance_t</a> : uint8_t { <br />
 &#160;&#160;<a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaa11b74b89f2fca4541d45474e1cf02296">bottom</a>
 , <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaad08041de815bd0728650b94c11dd4ccb">top</a>
-, <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaad3b3c4a9a9143b5799cd22e13c1f41f5">custom</a>
 , <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaaa68841a8d4290db0204da1692432edfa">transparent_bottom</a> = 0x40
+, <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaaf561ffe7cb841c68a24fb37762598522">transparent_top</a>
 , <br />
-&#160;&#160;<a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaaf561ffe7cb841c68a24fb37762598522">transparent_top</a>
-, <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaadeea1f21da1fbe0afe22f79f7c042b02">transparent_all</a>
+&#160;&#160;<a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caaadeea1f21da1fbe0afe22f79f7c042b02">transparent_all</a>
 <br />
  }</td></tr>
 <tr class="memdesc:ab4ec49965db1ac0fb014721338fe3caa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button appearance.  <a href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caa">More...</a><br /></td></tr>
@@ -135,20 +134,18 @@ const lgfx::IFont *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#adfefd4fbdd8c3209adfe061904b2c33a">setFont</a> (const lgfx::IFont *f)</td></tr>
 <tr class="memdesc:adfefd4fbdd8c3209adfe061904b2c33a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set font of the button text. <br /></td></tr>
 <tr class="separator:adfefd4fbdd8c3209adfe061904b2c33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">For customize buttons</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><dl class="section warning"><dt>Warning</dt><dd>Must be appearance is custom. </dd></dl>
-</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Gets the LGFX_Button</div></td></tr>
 <tr class="memitem:a79d8dcecce11a630f478afd29307b60d"><td class="memItemLeft" align="right" valign="top"><a id="a79d8dcecce11a630f478afd29307b60d"></a>
 LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a79d8dcecce11a630f478afd29307b60d">getButtonA</a> ()</td></tr>
-<tr class="memdesc:a79d8dcecce11a630f478afd29307b60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LGFX_Button A. <br /></td></tr>
+<tr class="memdesc:a79d8dcecce11a630f478afd29307b60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button A. <br /></td></tr>
 <tr class="separator:a79d8dcecce11a630f478afd29307b60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2265276cff5ed817e011d4f8860a0e60"><td class="memItemLeft" align="right" valign="top"><a id="a2265276cff5ed817e011d4f8860a0e60"></a>
 LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a2265276cff5ed817e011d4f8860a0e60">getButtonB</a> ()</td></tr>
-<tr class="memdesc:a2265276cff5ed817e011d4f8860a0e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LGFX_Button B. <br /></td></tr>
+<tr class="memdesc:a2265276cff5ed817e011d4f8860a0e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button B. <br /></td></tr>
 <tr class="separator:a2265276cff5ed817e011d4f8860a0e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dc9634a53ed1645c2f9ff75c761d778"><td class="memItemLeft" align="right" valign="top"><a id="a7dc9634a53ed1645c2f9ff75c761d778"></a>
 LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a7dc9634a53ed1645c2f9ff75c761d778">getButtonC</a> ()</td></tr>
-<tr class="memdesc:a7dc9634a53ed1645c2f9ff75c761d778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the LGFX_Button C. <br /></td></tr>
+<tr class="memdesc:a7dc9634a53ed1645c2f9ff75c761d778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the button C. <br /></td></tr>
 <tr class="separator:a7dc9634a53ed1645c2f9ff75c761d778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -171,8 +168,6 @@ LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab4ec49965db1ac0fb014721338fe3caaa11b74b89f2fca4541d45474e1cf02296"></a>bottom&#160;</td><td class="fielddoc"><p>Display buttons at the bottom of the screen (default) </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ab4ec49965db1ac0fb014721338fe3caaad08041de815bd0728650b94c11dd4ccb"></a>top&#160;</td><td class="fielddoc"><p>Display buttons at the top of the screen. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="ab4ec49965db1ac0fb014721338fe3caaad3b3c4a9a9143b5799cd22e13c1f41f5"></a>custom&#160;</td><td class="fielddoc"><p>Customize your own buttons. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ab4ec49965db1ac0fb014721338fe3caaaa68841a8d4290db0204da1692432edfa"></a>transparent_bottom&#160;</td><td class="fielddoc"><p>Transparent buttons on the bottom of the screen. </p>
 </td></tr>
