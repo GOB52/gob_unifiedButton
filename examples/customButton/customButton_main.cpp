@@ -4,13 +4,14 @@
  */
 #include <M5Unified.h>
 #include <gob_unifiedButton.hpp>
+#include "esp_random.h"
 
 goblib::UnifiedButton unifiedButton; // gob_unifiedButton instance
 
 void setup()
 {
     M5.begin();
-    unifiedButton.begin(&M5.Display, goblib::UnifiedButton::appearance_t::custom);
+    unifiedButton.begin(&M5.Display);
     M5.Display.clear(TFT_DARKGREEN);
 
     // Customize buttons
@@ -32,27 +33,36 @@ void setup()
     btnC->initButtonUL(unifiedButton.gfx(),
                      M5.Display.width()/2, M5.Display.height()/4, M5.Display.width()/2, M5.Display.height()*3/4,
                      TFT_CYAN, TFT_MAGENTA, TFT_RED, " CCC", 3.0f, 3.0f);
-
 }
 
 void loop()
 {
+    bool force{};
+
     M5.update();
     unifiedButton.update();
 
-    // Core/Core2/CoreS3 Can work with common code.
-    if(M5.BtnA.wasHold())
-    {
-        M5_LOGI("A button was hold");
-    }
-    else if(M5.BtnA.wasClicked())
-    {
-        M5_LOGI("A button was clicked");
-    }
+    auto btnA = unifiedButton.getButtonA();
+    auto btnB = unifiedButton.getButtonB();
 
-    if(M5.BtnB.pressedFor(1000))
+    static bool pa{};
+    bool ba = M5.BtnA.isPressed();
+    if(pa != ba)
     {
-        M5_LOGI("B button pressed for 1000 ms");
+        M5_LOGI("A button was changed");
+        btnA->setLabelText(M5.BtnA.isPressed() ? "Pressed" : "Released");
+        force = true;
+    }
+    pa = ba;
+
+    if(M5.BtnB.wasClicked())
+    {
+        M5_LOGI("B button was clicked");
+        uint16_t clr = esp_random() & 0xFFFF;
+        btnB->setOutlineColor(clr);
+        btnB->setFillColor(clr ^ 0xFFFF);
+        btnB->setTextColor(clr ^ 0xFF00);
+        force = true;
     }
     
     if(M5.BtnC.wasReleased())
@@ -60,5 +70,5 @@ void loop()
         M5_LOGI("C button was released");
     }
 
-    unifiedButton.draw();
+    unifiedButton.draw(force /*Force drawing to immediately reflect changes to LGFX_Button if true*/ );
 }
