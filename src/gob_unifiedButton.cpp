@@ -6,21 +6,30 @@
 #include <M5Unified.h>
 #include "gob_unifiedButton.hpp"
 
+namespace
+{
+constexpr char labelA[] = "BtnA";
+constexpr char labelB[] = "BtnB";
+constexpr char labelC[] = "BtnC";
+constexpr const char* label_table[] = { labelA, labelB, labelC };
+constexpr int32_t olClr = lgfx::color565(64,64,64);
+}
 namespace goblib
 {
 // class UnifiedButton
 void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
 {
-    _board = M5.getBoard();
     assert(gfx);
     _gfx = gfx;
     _appearance = app;
     _dirty = true;
     _font = gfx->getFont();
-    createButtons(_appearance);
+    _enable = M5.getBoard() ==  m5::board_t::board_M5StackCoreS3 && M5.Touch.isEnabled();
+    _rotation = _gfx->getRotation();
+    if(_enable) { create_buttons(_appearance); }
 }
 
-void UnifiedButton::createButtons(const appearance_t app)
+void UnifiedButton::create_buttons(const appearance_t app)
 {
     int32_t w{_gfx->width() / 3};
     int32_t h{32};
@@ -41,19 +50,21 @@ void UnifiedButton::createButtons(const appearance_t app)
         top = h/2;
         break;
     }
+    for(uint_fast8_t i = 0; i < 3; ++i)
+    {
+        _btns[i].initButton(_gfx, left + w * i + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK,label_table[i]);
+    }
+}
 
-    constexpr int32_t olClr = lgfx::color565(64,64,64);
-    
-    _btns[0].initButton(_gfx, left + w * 0 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnA");
-    _btns[1].initButton(_gfx, left + w * 1 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnB");
-    _btns[2].initButton(_gfx, left + w * 2 + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK, "BtnC");
-
-    //M5_LOGI("[gob] change appearance_t:%02xH", app);
+void UnifiedButton::setRotation(const uint_fast8_t rot)
+{
+    _rotation = rot & 0x07; // Valid values are [0...7]
+    create_buttons(_appearance);
 }
 
 void UnifiedButton::update()
 {
-    if(_board != m5::board_t::board_M5StackCoreS3) { return; }
+    if(!_enable) { return; }
 
     // Processes buttons in the same way as they are processed in Core2
     auto ms = m5gfx::millis();
@@ -72,15 +83,31 @@ void UnifiedButton::update()
             if (M5.BtnC.isPressed()) { btn_bits |= 1 << 2; }
             if (btn_bits || !(det.state & m5::touch_state_t::mask_moving))
             {
+                // Correct coordinates to match rotation.
+                auto x = raw.x;
+                auto y = raw.y;
+                const uint32_t rot = _gfx->getRotation();
+                const auto wid = _gfx->width();
+                const auto hgt = _gfx->height();
+
+                if(!(rot & 1)) { std::swap(x, y); }
+                const auto rot4 = rot ^ ((((rot >> 2) ^ 1) - 1) & 0x07); // 0-3 => 0-3,  4-7 => 3-0
+                switch(rot4)
+                {
+                case 0: x = wid - x - 1; break;
+                case 2: y = hgt - y - 1; break;
+                case 3: x = wid - x - 1; y = hgt - y - 1; break;
+                default: break;
+                }
+
                 for(int i=0; i<3; ++i)
                 {
-                    btn_bits |= (_btns[i].contains(raw.x, raw.y) << i);
+                    btn_bits |= (_btns[i].contains(x, y) << i);
                 }
                 _press_bits = btn_bits;
             }
         }
     }
-
     // Set status to M5.BtnX
     M5.BtnA.setRawState(ms, btn_bits & 1);
     M5.BtnB.setRawState(ms, btn_bits & 2);
@@ -91,15 +118,13 @@ void UnifiedButton::update()
 
 void UnifiedButton::draw(const bool force)
 {
-    if(_board != m5::board_t::board_M5StackCoreS3) { return; }
-
-    if(!(_appearance & appearance_t::transparent_bottom) && _show && (_dirty || force))
+    if(_enable && !(_appearance & appearance_t::transparent_bottom) && _show && (_dirty || force))
     {
         auto gfont = _gfx->getFont();
         _gfx->setFont(_font);
 
         _dirty = false;
-        for(int i=0; i<3; ++i)
+        for(int i=0; i < 3; ++i)
         {
             _btns[i].drawButton(_press_bits & (1<<i));
         }
