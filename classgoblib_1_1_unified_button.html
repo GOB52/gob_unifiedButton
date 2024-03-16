@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">gob_unifiedButton
-   &#160;<span id="projectnumber">0.1.2 git rev:cab9f4e170b9f2ca4b16167e58bb975481963f55</span>
+   &#160;<span id="projectnumber">0.1.3 git rev:f09d67b</span>
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a59ed0b71f36bc05557d4d062d00ecb04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a59ed0b71f36bc05557d4d062d00ecb04">begin</a> (LovyanGFX *<a class="el" href="classgoblib_1_1_unified_button.html#a413da381cd5a1995b266da410bf5a929">gfx</a>, const <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caa">appearance_t</a> app=appearance_t::bottom)</td></tr>
-<tr class="memdesc:a59ed0b71f36bc05557d4d062d00ecb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize.  <a href="classgoblib_1_1_unified_button.html#a59ed0b71f36bc05557d4d062d00ecb04">More...</a><br /></td></tr>
+<tr class="memdesc:a59ed0b71f36bc05557d4d062d00ecb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin the unified button.  <a href="classgoblib_1_1_unified_button.html#a59ed0b71f36bc05557d4d062d00ecb04">More...</a><br /></td></tr>
 <tr class="separator:a59ed0b71f36bc05557d4d062d00ecb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0194c8207811fd5b6d53b7f0457648ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a0194c8207811fd5b6d53b7f0457648ae">update</a> ()</td></tr>
 <tr class="memdesc:a0194c8207811fd5b6d53b7f0457648ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update status.  <a href="classgoblib_1_1_unified_button.html#a0194c8207811fd5b6d53b7f0457648ae">More...</a><br /></td></tr>
@@ -112,6 +112,9 @@ LovyanGFX *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:af73dd5f33e5c5ea7500c93bf2b38655c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#af73dd5f33e5c5ea7500c93bf2b38655c">changeAppearance</a> (const <a class="el" href="classgoblib_1_1_unified_button.html#ab4ec49965db1ac0fb014721338fe3caa">appearance_t</a> app)</td></tr>
 <tr class="memdesc:af73dd5f33e5c5ea7500c93bf2b38655c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change appearance.  <a href="classgoblib_1_1_unified_button.html#af73dd5f33e5c5ea7500c93bf2b38655c">More...</a><br /></td></tr>
 <tr class="separator:af73dd5f33e5c5ea7500c93bf2b38655c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5c10d0373739d912f3853bf84bd7bd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#aa5c10d0373739d912f3853bf84bd7bd8">setRotation</a> (const uint_fast8_t rot)</td></tr>
+<tr class="memdesc:aa5c10d0373739d912f3853bf84bd7bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change rotation.  <a href="classgoblib_1_1_unified_button.html#aa5c10d0373739d912f3853bf84bd7bd8">More...</a><br /></td></tr>
+<tr class="separator:aa5c10d0373739d912f3853bf84bd7bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Drawing control</div></td></tr>
 <tr class="memitem:a232f25b1fd189b267b545bfa2cf557b3"><td class="memItemLeft" align="right" valign="top"><a id="a232f25b1fd189b267b545bfa2cf557b3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgoblib_1_1_unified_button.html#a232f25b1fd189b267b545bfa2cf557b3">show</a> (const bool b)</td></tr>
@@ -206,7 +209,7 @@ LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
       </table>
 </div><div class="memdoc">
 
-<p>Initialize. </p>
+<p>Begin the unified button. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gfx</td><td>Target for drawing </td></tr>
@@ -274,6 +277,33 @@ LGFX_Button *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa5c10d0373739d912f3853bf84bd7bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5c10d0373739d912f3853bf84bd7bd8">&#9670;&nbsp;</a></span>setRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void goblib::UnifiedButton::setRotation </td>
+          <td>(</td>
+          <td class="paramtype">const uint_fast8_t&#160;</td>
+          <td class="paramname"><em>rot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change rotation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rot</td><td>Rotation code same as M5GFX [0...7] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Warning</dt><dd>If you have already customized the buttons, you will need to do it again. </dd></dl>
 
 </div>
 </div>
