@@ -5,7 +5,7 @@
   @mainpage gob_unifiedButton
   Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
 
-  @author GOB / GitHub:<a href="https://github.com/GOB52/">GOB52</a> / Twitter:<a href="https://twitter.com/gob_52_gob">@GOB_52_GOB</a>
+  @author GOB / GitHub:<a href="https://github.com/GOB52/">GOB52</a> / X:<a href="https://twitter.com/gob_52_gob">@GOB_52_GOB</a>
 
   @copyright 2023 GOB
   @copyright Licensed under the MIT license. See LICENSE file in the project root for full license information.
@@ -45,8 +45,13 @@ class UnifiedButton
 
     UnifiedButton() {}
 
+    ///@cond
+    UnifiedButton(const UnifiedButton&) = delete;
+    UnifiedButton& operator=(const UnifiedButton&) = delete;
+    ///@endcond
+    
     /*!
-      @brief Initialize
+      @brief Begin the unified button
       @param gfx Target for drawing
       @param app Button appearance
     */
@@ -90,10 +95,17 @@ class UnifiedButton
         {
             _dirty = true;
             _appearance = app;
-            createButtons(_appearance);
+            create_buttons(_appearance);
         }
     }
 
+    /*!
+      @brief Change rotation
+      @param rot Rotation code same as M5GFX [0...7]
+      @warning If you have already customized the buttons, you will need to do it again.
+    */
+    void setRotation(const uint_fast8_t rot);
+    
     ///@name Gets the LGFX_Button
     ///@{
     LGFX_Button* getButtonA() { return  &_btns[0]; } //!< @brief Gets the button A
@@ -111,15 +123,15 @@ class UnifiedButton
     /// @endcond
     
   private:
-    void createButtons(const appearance_t app);
+    void create_buttons(const appearance_t app);
 
     LGFX_Button _btns[3]; // 0:A, 1:B, 2:C
     LovyanGFX* _gfx{};
     uint_fast8_t _press_bits{};
-    bool _dirty{}, _show{true};;
+    bool _enable{}, _dirty{}, _show{true};
     appearance_t _appearance{appearance_t::bottom};
-    m5::board_t _board{m5::board_t::board_unknown};
     const lgfx::IFont* _font{};
+    uint_fast8_t _rotation{(uint_fast8_t)-1}; // Same as M5GFX
 };
 //
 }
