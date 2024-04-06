@@ -1,6 +1,6 @@
 /*!
   @file gob_unifiedButton.cpp
-  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Library main source
   @author GOB @GOB_52_GOB https://twitter.com/GOB_52_GOB
 */
 #include <M5Unified.h>
@@ -24,9 +24,19 @@ void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
     _appearance = app;
     _dirty = true;
     _font = gfx->getFont();
-    _enable = M5.getBoard() ==  m5::board_t::board_M5StackCoreS3 && M5.Touch.isEnabled();
+
+    auto bd = M5.getBoard();
+
+    _enable = (bd ==  m5::board_t::board_M5StackCoreS3 || bd ==  m5::board_t::board_M5Tough)
+               && M5.Touch.isEnabled();
     _rotation = _gfx->getRotation();
     if(_enable) { create_buttons(_appearance); }
+
+
+    if(M5.Touch.isEnabled() && !_enable)
+    {
+        M5_LOGW("Unsupported devices. getBoard() %u\n", bd);
+    }
 }
 
 void UnifiedButton::create_buttons(const appearance_t app)

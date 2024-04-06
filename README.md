@@ -5,12 +5,12 @@
 ![gob_unifiedButton](https://github.com/GOB52/gob_unifiedButton/assets/26270227/590cde0d-f4b6-4fe6-8cae-e25d27b32f8b)
 
 ## Overview
-This library adds touch buttons on CoreS3, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
+This library adds software touch buttons on CoreS3 and Tough, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
 Please use this as an interim feature until a similar feature is added to [M5Unified](https://github.com/m5stack/M5Unified) in the future.  
-It is also useful for those who are making a common source for Basic, Gray, and Core2, as it does not process anything other than CoreS3.
+It is also useful for those who are making a common source for Basic, Gray, Core2 and more, as it does not process anything other than CoreS3 and Tough.
 
 ## Required libraries
-* [M5Unified](https://github.com/m5stack/M5Unified)
+* [M5Unified](https://github.com/m5stack/M5Unified) 0.1.n ir later
 * [M5GFX](https://github.com/m5stack/M5GFX)
 
 **M5Unified is assumed, so it cannot be applied to those using M5Core3.h.**
