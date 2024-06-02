@@ -12,6 +12,7 @@ void setup()
 {
     M5.begin();
     unifiedButton.begin(&display);
+    //unifiedButton.begin(&display, goblib::UnifiedButton::appearance_t::top);
     display.clear(TFT_DARKGREEN);
     unifiedButton.getButtonA()->setLabelText("ROTATE");
 }
@@ -40,8 +41,8 @@ void loop()
         force = true;
     }
 
-    display.setCursor(16, 32);
+    display.setCursor(16, 64);
     display.printf("R:%u W:%d H:%d\n", display.getRotation(), display.width(), display.height());
-    display.printf("Click A to rotate random");
+    display.printf("Click A to rotate buttons");
     unifiedButton.draw(force);
 }
