@@ -5,12 +5,12 @@
 [English](README.md)
 
 ## 概要
-物理ボタン、タッチボタンを持たない CoreS3 上にタッチボタンを追加し、 M5.BtnX 経由で状態を取得できるようにしたライブラリです。  
+物理ボタン、タッチボタンを持たない CoreS3、Tough 上にソフトウェアタッチボタンを追加し、 M5.BtnX 経由で状態を取得できるようにしたライブラリです。  
 将来的に [M5Unified](https://github.com/m5stack/M5Unified) に同様の機能がつくまでの暫定としてお使いください。  
-CoreS3 以外では処理をしないので、Basic, Gray, Core2 と共通のソースで作っている方にも有用です。
+CoreS3、Tough 以外では処理をしないので、Basic, Gray, Core2 等と共通のソースで作っている方にも有用です。
 
 ## 必要なもの
-* [M5Unified](https://github.com/m5stack/M5Unified)
+* [M5Unified](https://github.com/m5stack/M5Unified) 0.1.n 以降
 * [M5GFX](https://github.com/m5stack/M5GFX)
 
 **M5Unified 前提ですので、 M5Core3.h を使用した物には適用できません。**
