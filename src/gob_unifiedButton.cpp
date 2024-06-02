@@ -26,12 +26,10 @@ void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
     _font = gfx->getFont();
 
     auto bd = M5.getBoard();
-
     _enable = (bd ==  m5::board_t::board_M5StackCoreS3 || bd ==  m5::board_t::board_M5Tough)
                && M5.Touch.isEnabled();
     _rotation = _gfx->getRotation();
     if(_enable) { create_buttons(_appearance); }
-
 
     if(M5.Touch.isEnabled() && !_enable)
     {
@@ -49,20 +47,18 @@ void UnifiedButton::create_buttons(const appearance_t app)
     {
     case appearance_t::bottom:
     case appearance_t::transparent_bottom:
-        top = _gfx->height() - h/2;
+        top = _gfx->height() - h;
         break;
     case appearance_t::top:
     case appearance_t::transparent_top:
-        top = h/2;
         break;
     default: // transparent_all
         h = _gfx->height();
-        top = h/2;
         break;
     }
     for(uint_fast8_t i = 0; i < 3; ++i)
     {
-        _btns[i].initButton(_gfx, left + w * i + w / 2, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK,label_table[i]);
+        _btns[i].initButtonUL(_gfx, left + w * i, top, w, h, olClr, TFT_DARKGRAY, TFT_BLACK,label_table[i]);
     }
 }
 
@@ -114,6 +110,7 @@ void UnifiedButton::update()
                 {
                     btn_bits |= (_btns[i].contains(x, y) << i);
                 }
+                //M5_LOGI("%d,%d : %x", x, y, btn_bits);
                 _press_bits = btn_bits;
             }
         }
