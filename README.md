@@ -7,11 +7,14 @@
 ## Overview
 This library adds software touch buttons on CoreS3 and Tough, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
 Please use this as an interim feature until a similar feature is added to [M5Unified](https://github.com/m5stack/M5Unified) in the future.  
-It is also useful for those who are making a common source for Basic, Gray, Core2 and more, as it does not process anything other than CoreS3 and Tough.
+
+It is also useful for those who are making a common source for Basic, Gray, Core2 and more, as it does not process anything other than CoreS3 and Tough.  
+
+In CoreS3SE, if M5Unified is used, the off-screen part functions as a button, as in Core2 .(In CoreS3, that part does not function as touch)
 
 ## Required libraries
-* [M5Unified](https://github.com/m5stack/M5Unified) 0.1.n ir later
-* [M5GFX](https://github.com/m5stack/M5GFX)
+* [M5Unified](https://github.com/m5stack/M5Unified) 0.1.16 or later
+* [M5GFX](https://github.com/m5stack/M5GFX) 0.1.16 or later
 
 **M5Unified is assumed, so it cannot be applied to those using M5Core3.h.**
 
