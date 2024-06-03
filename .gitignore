@@ -38,12 +38,14 @@
 
 #pio
 /.pio/
-
-#VsCode
-/.vscode/
+/.vscode
 
 # Doxygen
 /html
+/doc/html
+
+#Emacs
+\#*#
 
 # 
 debug.cfg

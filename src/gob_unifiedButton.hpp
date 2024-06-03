@@ -1,9 +1,9 @@
 /*!
   @file gob_unifiedButton.hpp
-  @brief Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  @brief Library main header
 
   @mainpage gob_unifiedButton
-  Add touch buttons for CoreS3 and commonality with conventional buttons (M5.BtnX)
+  This library adds software touch buttons on CoreS3 and Tough, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
 
   @author GOB / GitHub:<a href="https://github.com/GOB52/">GOB52</a> / X:<a href="https://twitter.com/gob_52_gob">@GOB_52_GOB</a>
 
