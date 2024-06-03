@@ -18,5 +18,12 @@
   "frameworks": "arduino",
   "dependencies": {
     "m5stack/M5Unified": "^0.1.16"
+  },
+  "export": {
+    "exclude":
+    [
+      "doc/html"
+    ]
   }
 }
+
