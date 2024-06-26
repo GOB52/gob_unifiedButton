@@ -12,7 +12,7 @@ constexpr char labelA[] = "BtnA";
 constexpr char labelB[] = "BtnB";
 constexpr char labelC[] = "BtnC";
 constexpr const char* label_table[] = { labelA, labelB, labelC };
-constexpr int32_t olClr = lgfx::color565(64,64,64);
+constexpr decltype(TFT_DARKGRAY) olClr = lgfx::color565(64,64,64);
 }
 namespace goblib
 {
