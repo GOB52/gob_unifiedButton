@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/GOB52/gob_unifiedButton.git"
   },
-  "version": "0.1.5",
+  "version": "0.1.6",
   "headers": "gob_unifiedButton.hpp",
   "license": "MIT",
   "platforms": "espressif32",
@@ -20,10 +20,8 @@
     "m5stack/M5Unified": "^0.1.16"
   },
   "export": {
-    "exclude":
-    [
+    "exclude": [
       "doc/html"
     ]
   }
 }
-
