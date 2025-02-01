@@ -6,7 +6,10 @@
 
 ## 概要
 物理ボタン、タッチボタンを持たない CoreS3、Tough 上にソフトウェアタッチボタンを追加し、 M5.BtnX 経由で状態を取得できるようにしたライブラリです。  
-将来的に [M5Unified](https://github.com/m5stack/M5Unified) に同様の機能がつくまでの暫定としてお使いください。  
+
+~~将来的に [M5Unified](https://github.com/m5stack/M5Unified) に同様の機能がつくまでの暫定としてお使いください。~~  
+M5Unified 0.2.3 より、 **M5.setTouchButtonHeightByRatio(uint8_t ratio)** が追加され、画面を M5.BtnX として使用できるようになりました。  
+今後はこちらの機能を使うと良いでしょう。
 
 CoreS3、Tough 以外では処理をしないので、Basic, Gray, Core2 等と共通のソースで作っている方にも有用です。  
 
@@ -17,7 +20,7 @@ CoreS3、Tough 以外では処理をしないので、Basic, Gray, Core2 等と�
 * [M5Unified](https://github.com/m5stack/M5Unified) 0.1.16 以降
 * [M5GFX](https://github.com/m5stack/M5GFX) 0.1.16 以降
 
-**M5Unified 前提ですので、 M5Core3.h を使用した物には適用できません。**
+**M5Unifiedを前提としているため、M5Core3.hなどデバイス固有のヘッダを使用している場合は適用できません。**
 
 ## 導入
 環境によって適切な方法でインストールしてください
@@ -79,7 +82,7 @@ begin で指定、または changeAppearance で変更できます。
 |transparent_all|画面全体に透明ボタンを配置(縦3分割)|
 
 ## ボタンのカスタマイズ
-LGFX_Button\* を取得できます。  
+LGFX\_Button\* を取得できます。  
 ```cpp
 void setup()
 {
@@ -93,14 +96,14 @@ void setup()
 	btnA->setLabelText("Own");
 }
 ```
-LGFX_Button については[こちら](https://github.com/m5stack/M5GFX/blob/master/src/lgfx/v1/LGFX_Button.hpp)を参照してください。
+LGFX\_Button については[こちら](https://github.com/m5stack/M5GFX/blob/master/src/lgfx/v1/LGFX_Button.hpp)を参照してください。
 
 
 ## ドキュメント
-[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](doc/Doxyfile)と[シェルスクリプト](doc/doxy.sh)で作成できます。  
+[Doxygen](https://www.doxygen.nl/) 用の[設定ファイル](docs/Doxyfile)と[シェルスクリプト](docs/doxy.sh)で作成できます。  
 出力先は doc/html です。
 ```
-bash doc/doxy.sh
+bash docs/doxy.sh
 ```
 
 または[GitHub Pages](https://gob52.github.io/gob_unifiedButton/)を参照してください。
