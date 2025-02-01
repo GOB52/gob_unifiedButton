@@ -17,7 +17,7 @@
     "platforms": "espressif32",
     "frameworks": "arduino",
     "dependencies": {
-        "m5stack/M5Unified": "^0.1.16"
+        "m5stack/M5Unified": ">=0.1.16"
     },
     "export": {
         "exclude": [
