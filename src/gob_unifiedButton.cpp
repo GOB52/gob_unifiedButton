@@ -6,6 +6,13 @@
 #include <M5Unified.h>
 #include "gob_unifiedButton.hpp"
 
+#define GUB_M5UNIFIED_VERSION                                           \
+    ((M5UNIFIED_VERSION_MAJOR << 16) | (M5UNIFIED_VERSION_MINOR << 8) | M5UNIFIED_VERSION_PATCH)
+
+#if GUB_M5UNIFIED_VERSION >= 0x0203
+#define USING_M5UNIFIED_023_OR_LATER
+#endif
+
 namespace
 {
 constexpr char labelA[] = "BtnA";
@@ -27,14 +34,26 @@ void UnifiedButton::begin(LovyanGFX* gfx, const appearance_t app)
 
     auto bd = M5.getBoard();
     _enable = (bd ==  m5::board_t::board_M5StackCoreS3 || bd ==  m5::board_t::board_M5Tough)
-               && M5.Touch.isEnabled();
+            && M5.Touch.isEnabled();
     _rotation = _gfx->getRotation();
     if(_enable) { create_buttons(_appearance); }
 
-    if(M5.Touch.isEnabled() && !_enable)
+    if(!_enable)
     {
         M5_LOGW("Unsupported devices. getBoard() %u\n", bd);
+        return;
     }
+
+    M5_LOGD("M5Unified [%X] %u.%u.%u",
+            GUB_M5UNIFIED_VERSION, M5UNIFIED_VERSION_MAJOR,M5UNIFIED_VERSION_MINOR,M5UNIFIED_VERSION_PATCH);
+
+    _m5btns[0] = M5.BtnA;
+    _m5btns[1] = M5.BtnB;
+    _m5btns[2] = M5.BtnC;
+
+#if defined(USING_M5UNIFIED_023_OR_LATER)
+    M5.setTouchButtonHeightByRatio(0); // Disable M5Unified virtual screen buttons (0.2.3 or later)
+#endif
 }
 
 void UnifiedButton::create_buttons(const appearance_t app)
@@ -89,7 +108,7 @@ void UnifiedButton::update()
             if (M5.BtnC.isPressed()) { btn_bits |= 1 << 2; }
             if (btn_bits || !(det.state & m5::touch_state_t::mask_moving))
             {
-                // Correct coordinates to match rotation.
+                // Correct coordinates to match rotation
                 auto x = raw.x;
                 auto y = raw.y;
                 const uint32_t rot = _gfx->getRotation();
@@ -115,11 +134,15 @@ void UnifiedButton::update()
             }
         }
     }
-    // Set status to M5.BtnX
-    M5.BtnA.setRawState(ms, btn_bits & 1);
-    M5.BtnB.setRawState(ms, btn_bits & 2);
-    M5.BtnC.setRawState(ms, btn_bits & 4);
 
+    // Set status to M5.BtnX
+    _m5btns[0].setRawState(ms, btn_bits & 1);
+    _m5btns[1].setRawState(ms, btn_bits & 2);
+    _m5btns[2].setRawState(ms, btn_bits & 4);
+    M5.BtnA = _m5btns[0];
+    M5.BtnB = _m5btns[1];
+    M5.BtnC = _m5btns[2];
+    
     _dirty |= (prev != _press_bits);
 }
 

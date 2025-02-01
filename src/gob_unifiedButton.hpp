@@ -132,6 +132,7 @@ class UnifiedButton
     appearance_t _appearance{appearance_t::bottom};
     const lgfx::IFont* _font{};
     uint_fast8_t _rotation{(uint_fast8_t)-1}; // Same as M5GFX
+    m5::Button_Class _m5btns[3];
 };
 //
 }
