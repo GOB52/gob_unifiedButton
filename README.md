@@ -6,7 +6,10 @@
 
 ## Overview
 This library adds software touch buttons on CoreS3 and Tough, which does not have physical buttons or touch buttons, and enables the user to acquire the status via M5.BtnX.  
-Please use this as an interim feature until a similar feature is added to [M5Unified](https://github.com/m5stack/M5Unified) in the future.  
+~~Please use this as an interim feature until a similar feature is added to [M5Unified](https://github.com/m5stack/M5Unified) in the future.~~  
+
+Since M5Unified 0.2.3, **M5.setTouchButtonHeightByRatio(uint8_t ratio)** has been added, allowing the screen to be used as button (M5.BtnX)  
+You may want to use this feature.
 
 It is also useful for those who are making a common source for Basic, Gray, Core2 and more, as it does not process anything other than CoreS3 and Tough.  
 
@@ -16,7 +19,7 @@ In CoreS3SE, if M5Unified is used, the off-screen part functions as a button, as
 * [M5Unified](https://github.com/m5stack/M5Unified) 0.1.16 or later
 * [M5GFX](https://github.com/m5stack/M5GFX) 0.1.16 or later
 
-**M5Unified is assumed, so it cannot be applied to those using M5Core3.h.**
+**M5Unified is assumed, it is not applicable when device-specific headers such as M5Core3.h are used.**
 
 ## How to install
 Install in an appropriate way depending on your environment.
@@ -77,7 +80,7 @@ You can specify it with begin or change it with changeAppearance.
 |transparent_all|Transparent buttons are placed on the entire screen (three vertical sections)|
 
 ## Customize Buttons
-You can get LGFX_Button\*.
+You can get LGFX\_Button\*.
 
 ```cpp
 void setup()
@@ -93,9 +96,10 @@ void setup()
     btnA->setLabelText("Own");
 }
 ```
+Click [here](https://github.com/m5stack/M5GFX/blob/master/src/lgfx/v1/LGFX_Button.hpp) for more information about LGFX\_Button].
 
 ## Document
-Can be created from a [configuration file](doc/Doxyfile) and [shell script](doc/doxy.sh) for [Doxygen](https://www.doxygen.nl/).  
+Can be created from a [configuration file](docs/Doxyfile) and [shell script](docs/doxy.sh) for [Doxygen](https://www.doxygen.nl/).  
 Output is to doc/html
 ```
 bash doc/doxy.sh

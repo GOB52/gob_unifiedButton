@@ -1,27 +1,27 @@
 {
-  "name": "gob_unifiedButton",
-  "description": "Add touch buttons for CoreS3 / Tough and commonality with conventional buttons (M5.BtnX)",
-  "keywords": "CoreS3, M5Tough, M5Stack, M5Unified, M5GFX",
-  "authors": {
-    "name": "GOB",
-    "url": "https://github.com/GOB52",
-    "maintainer": true
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/GOB52/gob_unifiedButton.git"
-  },
-  "version": "0.1.6",
-  "headers": "gob_unifiedButton.hpp",
-  "license": "MIT",
-  "platforms": "espressif32",
-  "frameworks": "arduino",
-  "dependencies": {
-    "m5stack/M5Unified": "^0.1.16"
-  },
-  "export": {
-    "exclude": [
-      "doc/html"
-    ]
-  }
+    "name": "gob_unifiedButton",
+    "description": "Add touch buttons for CoreS3 / Tough and commonality with conventional buttons (M5.BtnX)",
+    "keywords": "CoreS3, M5Tough, M5Stack, M5Unified, M5GFX",
+    "authors": {
+        "name": "GOB",
+        "url": "https://github.com/GOB52",
+        "maintainer": true
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GOB52/gob_unifiedButton.git"
+    },
+    "version": "0.1.7",
+    "headers": "gob_unifiedButton.hpp",
+    "license": "MIT",
+    "platforms": "espressif32",
+    "frameworks": "arduino",
+    "dependencies": {
+        "m5stack/M5Unified": ">=0.1.16"
+    },
+    "export": {
+        "exclude": [
+            "doc/html"
+        ]
+    }
 }
